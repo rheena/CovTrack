@@ -1,5 +1,6 @@
 package com.example.covtrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class RegisterPageActivity extends AppCompatActivity {
 
     FirebaseDatabase rootNode;
     DatabaseReference recordsDbRef;
+    private Button button;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,16 @@ public class RegisterPageActivity extends AppCompatActivity {
             regBtn = findViewById(R.id.registerbtn);
 
             recordsDbRef = FirebaseDatabase.getInstance().getReference().child("Patient");
+
+            //Connecting register to Patients page
+            button = (Button) findViewById(R.id.registerbtn);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent= new Intent(RegisterPageActivity.this,PatientsPageActivity.class);
+                    startActivity(intent);
+                }
+            });
 
             //Save data in Firebase on button click
             regBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +69,8 @@ public class RegisterPageActivity extends AppCompatActivity {
             String password = regPassword.getText().toString();
 
             UserHelperClass helperClass = new UserHelperClass(fname, lname, email, phone, password);
+
+            Toast.makeText(RegisterPageActivity.this, "Registration was successful!", Toast.LENGTH_SHORT).show();
 
             recordsDbRef.push().setValue(helperClass);
         }
