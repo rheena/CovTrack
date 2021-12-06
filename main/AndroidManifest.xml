@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterPageActivity"/>
+        <activity android:name=".PatientsPageActivity"/>
+        <activity android:name=".AddPatientActivity"/>
     </application>
 
 </manifest>

@@ -45,6 +45,9 @@ public class WelcomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(WelcomePageActivity.this,PatientsPageActivity.class);
+
+
+                Log.e("Testing", "Got here");
                 startActivity(intent);
             }
         });
